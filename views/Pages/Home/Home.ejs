@@ -1,0 +1,302 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src=""></script>
+
+<main>
+
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+          <img src="images/wooden.jpg" style="width: 100%; height: 500px; object-fit: contain"/>
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="images/2.jpg" style="width: 100%; height: 500px; object-fit: contain"/>
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="images/3.jpg" style="width: 100%; height: 500px; object-fit: contain"/>
+         
+        </div>
+
+        <div class="mySlides fade">
+            <img src="images/metal.jpg" style="width: 100%; height: 500px; object-fit: contain"/>
+            
+          </div>
+        
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+        
+        </div>
+        <br>
+        
+       
+        
+        <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+        }
+        </script>
+</main>
+  
+  
+
+
+
+<section class="order-frame">
+    <h2>Order Your Custom Frame</h2>
+    <button onclick="openOrderForm()">Buy Now</button>
+    
+    <div id="orderForm" class="popup-form">
+        <h3>Place Your Order</h3>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Frame Size (e.g. 10x12 inches)" required>
+        <button onclick="submitOrder()">Submit</button>
+        <button onclick="closeOrderForm()">Close</button>
+    </div>
+</section>
+
+
+
+
+
+
+<section class="categories">
+  <h2>Category</h2>
+  <div class="category-items">
+      <div class="category-item "><img src="images/frame.webp"  alt="Framed Print">Heart Photo Frame</div>
+      <div class="category-item"><img src="images/collage.jpg" alt="Framed Print">Collage Frames</div>
+      <div class="category-item"><img src="images/family.webp" alt="Framed Print">Family Photo Frames</div>
+      <div class="category-item"><img src="images/friend.jpg" alt="Framed Print">Friend Photo Frame</div>
+  </div>
+</section>
+
+
+<h1>Personalized Gifts</h1>
+<div class="container">
+    <div class="product">
+      <img src="images/cholocatebox.jfif" alt="Chocolate Box">
+      <p>Chocolate Boxes</p>
+  </div>
+  <div class="product">
+      <img src="images/mug.jfif" alt="Mug">
+      <p>Mugs</p>
+  </div>
+  <div class="product">
+      <img src="images/frame.webp" alt="Photo Frame">
+      <p>Photo Frames</p>
+  </div>
+</div>
+
+
+
+
+<h1>Photo Frames</h1>
+
+<div class="product">
+    <h3>Wooden Frame</h3>
+    <p>Price: $25</p>
+    <button onclick="addToCart('1', 'Wooden Frame', 25, 1)">Add to Cart</button>
+</div>
+
+<script>
+    function addToCart(productId, productName, price, quantity) {
+        fetch("http://localhost:3000/add-to-cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ productId, productName, price, quantity })
+        })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error("Error:", error));
+    }
+</script>
+
+
+<section class="products">
+  <h2>Products</h2>
+<div class="products">
+  <div class="product-grid">
+      <div class="product-item">
+          <img src="images/peach-frame.jpg" alt="Peach Color Decorative Photo Frame">
+          <div class="product-title">Peach Color Decorative Photo Frame</div>
+          <div class="product-price">₹250</div>
+          <a href="#" class="add-to-cart">Add to cart</a>
+      </div>
+      <div class="product-item">
+          <img src="images/photo-frame-2.jpg" alt="Photo Frame for 2 Pics">
+          <div class="product-title">Photo Frame for 2 Pics</div>
+          <div class="product-price">₹200</div>
+          <a href="#" class="add-to-cart">Add to cart</a>
+      </div>
+      <div class="product-item">
+          <img src="images/family-frame.jpg" alt="Photo Frame for Family">
+          <div class="product-title">Photo Frame for Family</div>
+          <div class="product-price">₹599</div>
+          <a href="#" class="add-to-cart">Add to cart</a>
+      </div>
+      <div class="product-item">
+          <img src="images/happy-frame.jpg" alt="Happy 3 Pics Photo Frame">
+          <div class="product-title">Happy 3 Pics Photo Frame</div>
+          <div class="product-price">₹350</div>
+          <a href="#" class="add-to-cart">Add to cart</a>
+      </div>
+      <div class="product-item">
+          <img src="images/clock-frame.webp" alt="Clock & 5 Pics Photo Frame">
+          <div class="product-title">Clock & 5 Pics Photo Frame</div>
+          <div class="product-price">₹1,200</div>
+          <a href="#" class="add-to-cart">Add to cart</a>
+      </div>
+      <div class="product-item">
+          <img src="images/evergreen-frames.jpg" alt="Evergreen Memories Photo Frames">
+          <div class="product-title">Evergreen Memories Photo Frames</div>
+          <div class="product-price">₹2,400</div>
+          <a href="#" class="add-to-cart">Add to cart</a>
+      </div>
+  </div>
+</div>
+</section>
+
+    <section class="our-services">
+        <h2>Our Services</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <img src="images/service1.jpg" alt="Commercial Photography">
+                <h3>Commercial, Industrial & Advertising Photography</h3>
+                <p>We also click for many advertising agencies and help them in making good content for their ads.</p>
+                <button>Enquire Now</button>
+            </div>
+            <div class="service-card">
+                <img src="images/coordinated-family-portraits.jpg" alt="Matrimonial Photography">
+                <h3>Matrimonial & Family Photo Sessions</h3>
+                <p>Looking out for marriage options? Get clicked by us and find your mate with perfect matrimonial pictures.</p>
+                <button>Enquire Now</button>
+            </div>
+            <div class="service-card">
+                <img src="images/photocoping.jfif" alt="Photocopying">
+                <h3>Photocopying</h3>
+                <p>Whether you need a standard photocopying service, or a large document copied, our photocopiers will complete your job quickly and efficiently.</p>
+                <button>Enquire Now</button>
+            </div>
+            <div class="service-card">
+                <img src="images/priniting.jpg" alt="Printing">
+                <h3>Printing</h3>
+                <p>You won't miss a deadline with our printing services. We offer printing in black and white, and spot in either matt or gloss finish.</p>
+                <button>Enquire Now</button>
+            </div>
+        </div>
+    </section>
+
+ 
+<section>
+<div class="about-section">
+  <div class="about-text">
+  <h2>About Us</h2>
+  <p>
+    When it comes to serving our customers, our goal is to create a perfect frame to capture your favorite moments. 
+  We, Perfect Prints, ensure that nothing from our creations ends up in a landfill
+  and constantly innovate the way we do business so you can feel more care and less environmental impact. 
+  Our frames will capture all your beautiful memories that you can keep in the corners and cherish them for years to come.
+</p>
+</div>
+<div class="about-image">
+  <img src="images/aboutimage.jpg" alt="Decorative wall with photo frames">
+</div>
+</div>
+</section>
+
+
+<div class="gallery-section">
+  <h2>Gallery</h2>
+  <div class="gallery">
+      <img src="images/family-frame.jpg" alt="Family Photo Frames">
+      <img src="images/gallery2.jpg" alt="Couple Photo Frames">
+      <img src="images/gallery3.jpg" alt="Memorable Photo Frames">
+  </div>
+</div>
+
+<div class="video-section">
+  <h1>Videos</h1>
+  <div class="video-container">
+      <div class="video-box">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+          <p>How Photo Frames Are Made</p>
+          <button class="watch-button">Watch on YouTube</button>
+      </div>
+      <div class="video-container">
+          <div class="video-box">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+              <p>Mirror Photo Frame</p>
+              <button class="watch-button">Watch on YouTube</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+ <!-- Testimonials -->
+ <section class="testimonials">
+  <h2>Testimonials</h2>
+  <blockquote>"They made a frame for my wife's birthday!"</blockquote>
+</section>
+
+<!-- Contact Page Content -->
+<section class="contact-container">
+    <h1>Contact Us</h1>
+    <div class="contact-info">
+        <div class="info-box">
+            <h2>Our Office Address</h2>
+            <p>Nepal</p>
+        </div>
+        <div class="info-box">
+            <h2>General Enquiries</h2>
+            <p>Email: <a href="mailto:inkeshadhikary@gmail.com">inkeshadhikary@gmail.com</a></p>
+        </div>
+        <div class="info-box">
+            <h2>Call Us</h2>
+            <p>📞 +977 9862318586</p> 
+        </div>
+        <div class="info-box">
+            <h2>Our Timings</h2>
+            <p>🕒 Mon - Sun : 24hrs</p>
+        </div>
+    </div>
+  
+    <!-- Contact Form -->
+    <form class="contact-form" id="contactForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email ID" required>
+        <input type="tel" id="phone" placeholder="Mobile Number" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Submit Now</button>
+        <p id="form-message"></p>
+    </form>
+  </section>

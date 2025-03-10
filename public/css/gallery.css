@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #222;
+    padding: 15px;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+.nav-links li {
+    margin: 0 15px;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+.nav-links a.active {
+    font-weight: bold;
+    border-bottom: 2px solid #ff7f50;
+}
+
+/* Gallery Section */
+.gallery {
+    text-align: center;
+    padding: 50px 20px;
+}
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    margin-bottom: 20px;
+}
+.filter-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    background: #ff7f50;
+    color: white;
+}
+.filter-btn.active {
+    background: #222;
+}
+
+/* Gallery Grid */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+.gallery-item {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+.lightbox-img {
+    max-width: 90%;
+    max-height: 90%;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    margin-top: 30px;
+}
+

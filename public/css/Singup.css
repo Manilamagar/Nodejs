@@ -1,0 +1,254 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Signup Container */
+.signup-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Platform Features Section */
+.platform-features {
+    margin-bottom: 40px;
+}
+
+.platform-features h2 {
+    font-size: 1.8rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.platform-features ul {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.platform-features ul li {
+    background: url('checkmark.png') no-repeat left center;
+    background-size: 20px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.platform-features p {
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+}
+
+/* Demo Form Section */
+.demo-form {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.demo-form h2 {
+    font-size: 1.8rem;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.demo-form .form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.demo-form input,
+.demo-form select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.demo-form .form-group {
+    margin-bottom: 20px;
+}
+
+.demo-form .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.demo-form .radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.demo-form .button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.demo-form .button-group button {
+    flex: 1;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #555;
+}
+
+.demo-form .button-group button:hover {
+    background-color: #f0f0f0;
+}
+
+.demo-form .submit-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.demo-form .submit-button:hover {
+    background-color: #e65a50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .demo-form .form-row {
+        flex-direction: column;
+    }
+
+    .demo-form .button-group {
+        flex-direction: column;
+    }
+
+    .demo-form .button-group button {
+        width: 100%;
+    }
+}
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #777;
+}
+
+
+
+
+
+
+    
+    /* Overall layout container */
+    .signup-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+
+    /* Signup form container */
+    #user-account-signup {
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        width: 320px;
+    }
+
+    /* Form Heading */
+    #user-account-signup h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+
+    /* Form group */
+    #user-account-signup div {
+        margin-bottom: 1rem;
+    }
+
+    /* Label styles */
+    #user-account-signup label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #555;
+        font-weight: bold;
+    }
+
+    /* Input styles */
+    #user-account-signup input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #user-account-signup input:focus {
+        border-color: #9b59b6;
+        box-shadow: 0 0 5px rgba(155, 89, 182, 0.5);
+        outline: none;
+    }
+
+    /* Button Styles */
+    #Signup-button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #9b59b6;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #Signup-button:hover {
+        background-color: #8e44ad;
+    }
+
+    footer{
+        margin-top: 0;
+    }

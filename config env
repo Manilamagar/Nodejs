@@ -1,0 +1,16 @@
+# mongodb companss --> click on tripple dots (...) --> click on "COPY CONNECTION STRING"
+CONNECTION_STRING= mongodb://localhost:27017
+
+# COOKIES
+AUTH_COOKIES_KEY= jwt_authtentication_signature
+COOKIES_EXPIRATION= 10
+
+# JWT SIGNATURE
+HASH_STRING= iamunhackable
+EXPIRATION_DURATION= 10d
+
+# SEEDING THE ADMIN
+ADMIN_EMAIL= "admin@gmail.com"
+ADMIN_PASSWORD= "thisisadmin@1"
+PASSWORD_SALT = 8
+ADMIN_ROLE= admin

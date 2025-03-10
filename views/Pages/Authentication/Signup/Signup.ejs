@@ -1,0 +1,93 @@
+
+<link rel="stylesheet" href="./css/Signup.css">
+
+
+<div class="signup-container">
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Letang Canvas and Innovation</h1>
+        <p>Sign up to explore our premium photo frames and elevate your memories.</p>
+    
+     <!-- Demo Form Section -->
+     <section class="demo-form">
+        <h2>Get a perivous memories</h2>
+        <form>
+            <div class="form-row">
+                <input type="text" placeholder="First Name" required>
+                <input type="text" placeholder="Last Name" required>
+            </div>
+            <div class="form-row">
+                <input type="email" placeholder="Email Address" required>
+                
+            </div>
+            <div class="form-row">
+                <input type="tel" placeholder="Phone Number" required>
+                <select required>
+                    <option value="" disabled selected>Business Type...</option>
+                    <option value="individual">Individual</option>
+                    <option value="retailer">Retailer</option>
+                    <option value="wholesaler">Wholesaler</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Is this a New Opening or an Existing Establishment?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="establishment" value="existing" required> Existing Establishment</label>
+                    <label><input type="radio" name="establishment" value="new" required> New Opening</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>How many total concepts & locations do you have?</label>
+                <div class="button-group">
+                    <button type="button">1-2</button>
+                    <button type="button">3-5</button>
+                    <button type="button">6-20</button>
+                    <button type="button">20+</button>
+                </div>
+            </div>
+            <button type="submit" class="submit-button">Get a Free Demo</button>
+            <p>By completing and submitting the form above, you agree to our Privacy Policy and to allow SMS communications with the phone number provided. 
+                For detailed information on all promotion requirements, please refer to the Promotional Requirements page.</p>
+        </form>
+    </section>
+</div>
+</header>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Letang Canvas and Innovation. All rights reserved.</p>
+    </footer>
+</div>
+
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const SubmitButton = document.getElementById("Signup-button");
+    SubmitButton.addEventListener("click", async () => {
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const passwordConfirm = document.getElementById("passwordConfirm").value;
+
+        console.log(username, email, password, passwordConfirm);
+        const response = await axios({
+            method: "POST",
+            url: "http://localhost:8001/api/v1/auth/signup",
+            data: {
+                username,
+                email,
+                password,
+                passwordConfirm,
+            }
+        });
+
+        if (response.data.status == "success") {
+            alert("Login Successful");
+        }
+
+
+    })
+
+</script>
