@@ -1,0 +1,54 @@
+<h1>Enquire Now</h1>
+<form id="enquiryForm">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone">
+    </div>
+    <div>
+        <label for="service">Service:</label>
+        <input type="text" id="service" name="service" value="Commercial Photography" readonly>
+        </div>
+    <div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
+    <button type="submit">Submit Enquiry</button>
+</form>
+
+<script>
+    document.getElementById('enquiryForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(this);
+        const enquiryData = {};
+        formData.forEach((value, key) => {
+            enquiryData[key] = value;
+        });
+
+        fetch('/api/enquire', { // Your server-side API endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(enquiryData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('Your enquiry has been submitted successfully!');
+            // Optionally redirect the user or clear the form
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred while submitting your enquiry.');
+        });
+    });
+</script>

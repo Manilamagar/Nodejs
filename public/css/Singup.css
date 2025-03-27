@@ -1,254 +1,197 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Basic Reset and Body Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Signup Container */
-.signup-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Header */
-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-header h1 {
-    font-size: 28px;
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
-
-header p {
-    font-size: 16px;
-    color: #666;
-}
-
-/* Platform Features Section */
-.platform-features {
-    margin-bottom: 40px;
-}
-
-.platform-features h2 {
-    font-size: 1.8rem;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.platform-features ul {
-    list-style-type: none;
-    margin-bottom: 20px;
-}
-
-.platform-features ul li {
-    background: url('checkmark.png') no-repeat left center;
-    background-size: 20px;
-    padding-left: 30px;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-    color: #666;
-}
-
-.platform-features p {
-    font-size: 1.1rem;
-    color: #666;
-    text-align: center;
-}
-
-/* Demo Form Section */
-.demo-form {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.demo-form h2 {
-    font-size: 1.8rem;
-    color: #555;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.demo-form .form-row {
+    font-family: sans-serif;
+    margin: 0;
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4; /* Example background */
+    flex-direction: column;
+    
+}
+
+.signup-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 400px; /* Adjust as needed */
+    margin-top: 50px;
+}
+
+.signup-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    color: #aaa;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.input-group {
     margin-bottom: 15px;
 }
 
-.demo-form input,
-.demo-form select {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.demo-form .form-group {
-    margin-bottom: 20px;
-}
-
-.demo-form .form-group label {
+.input-group label {
     display: block;
-    margin-bottom: 10px;
-    font-size: 1rem;
+    margin-bottom: 5px;
     color: #555;
+    font-size: 14px;
 }
 
-.demo-form .radio-group {
+.phone-input {
     display: flex;
-    gap: 20px;
-}
-
-.demo-form .button-group {
-    display: flex;
-    gap: 10px;
-}
-
-.demo-form .button-group button {
-    flex: 1;
-    padding: 10px;
-    background-color: #fff;
+    align-items: center;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #555;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-.demo-form .button-group button:hover {
-    background-color: #f0f0f0;
+.phone-input span.country-code {
+    padding: 10px;
+    background-color: #eee;
+    color: #333;
+    border-right: 1px solid #ccc;
 }
 
-.demo-form .submit-button {
-    width: 100%;
-    padding: 15px;
-    background-color: #ff6f61;
+.phone-input input[type="tel"] {
+    flex-grow: 1;
+    padding: 10px;
     border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 1.1rem;
-    cursor: pointer;
+    outline: none;
+    font-size: 16px;
 }
 
-.demo-form .submit-button:hover {
-    background-color: #e65a50;
+.checkbox-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .demo-form .form-row {
-        flex-direction: column;
-    }
-
-    .demo-form .button-group {
-        flex-direction: column;
-    }
-
-    .demo-form .button-group button {
-        width: 100%;
-    }
+.checkbox-group input[type="checkbox"] {
+    margin-right: 8px;
 }
-/* Footer */
-footer {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 12px;
+
+.checkbox-group label {
+    font-size: 13px;
     color: #777;
 }
 
+.checkbox-group label a {
+    color: #007bff;
+    text-decoration: none;
+}
 
+.checkbox-group label a:hover {
+    text-decoration: underline;
+}
 
+.whatsapp-btn, .sms-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.whatsapp-btn {
+    background-color: #25D366; /* WhatsApp Green */
+}
 
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+}
 
-    
-    /* Overall layout container */
-    .signup-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: linear-gradient(135deg, #71b7e6, #9b59b6);
-    }
+.sms-btn {
+    background-color: #007bff; /* Blue */
+}
 
-    /* Signup form container */
-    #user-account-signup {
-        background: #ffffff;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        width: 320px;
-    }
+.sms-btn:hover {
+    background-color: #0056b3;
+}
 
-    /* Form Heading */
-    #user-account-signup h2 {
-        text-align: center;
-        margin-bottom: 1.5rem;
-        color: #333;
-    }
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #777;
+}
 
-    /* Form group */
-    #user-account-signup div {
-        margin-bottom: 1rem;
-    }
+.separator::before,
+.separator::after {
+    content: '';
+    flex-grow: 1;
+    background-color: #ccc;
+    height: 1px;
+    margin: 0 10px;
+}
 
-    /* Label styles */
-    #user-account-signup label {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #555;
-        font-weight: bold;
-    }
+.social-login {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
 
-    /* Input styles */
-    #user-account-signup input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1rem;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
+.social-login a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
 
-    #user-account-signup input:focus {
-        border-color: #9b59b6;
-        box-shadow: 0 0 5px rgba(155, 89, 182, 0.5);
-        outline: none;
-    }
+.social-login a:hover {
+    border-color: #007bff;
+}
 
-    /* Button Styles */
-    #Signup-button {
-        width: 100%;
-        padding: 0.75rem;
-        background-color: #9b59b6;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.google-login {
+    background-color: #e05d00;
+    color: white;
+    border-color: #e05d00;
+    width: 45%; /* Adjust width as needed */
+    /* Add Google specific styling if needed */
+}
 
-    #Signup-button:hover {
-        background-color: #8e44ad;
-    }
+.facebook-login {
+    /* Add Facebook specific styling if needed */
+    background-color: #4267B2;
+    color: white;
+    border-color: #4267B2;
+}
 
-    footer{
-        margin-top: 0;
-    }
+.facebook-login:hover {
+    background-color: #364e8f;
+}
+
+.login-link {
+    text-align: center;
+    font-size: 13px;
+    color: #777;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

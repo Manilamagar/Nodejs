@@ -1,6 +1,11 @@
-const router = require("express").Router();
-const { HomePage,CategoryPage, ProductPage, AboutPage,GalleryPage,BlogPage,VideoPage,ServicePage,ContactPage, LoginPage, SignupPage, AddBlogsPage } = require("./../Controller/ViewController");
+
+const express = require("express");
+const router = express.Router();
+const { HomePage,CategoryPage, ProductPage,AboutPage,GalleryPage,BlogPage,VideoPage,ServicePage,ContactPage, LoginPage, SignupPage, AddBlogsPage } = require("./../Controller/ViewController");
 const { isAdminLoggedIn, isLoggedIn } = require("./../Controller/AuthController")
+
+
+// router.get('/view', viewController.viewPage); // This should match the exported function
 
 router.get("/Home", HomePage);
 router.get("/", HomePage);

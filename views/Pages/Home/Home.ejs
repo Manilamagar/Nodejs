@@ -3,87 +3,102 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src=""></script>
 
-<main>
-
-    <div class="slideshow-container">
-
-        <div class="mySlides fade">
-          <img src="images/wooden.jpg" style="width: 100%; height: 500px; object-fit: contain"/>
-        </div>
-        
-        <div class="mySlides fade">
-          <img src="images/2.jpg" style="width: 100%; height: 500px; object-fit: contain"/>
-        </div>
-        
-        <div class="mySlides fade">
-          <img src="images/3.jpg" style="width: 100%; height: 500px; object-fit: contain"/>
-         
-        </div>
-
-        <div class="mySlides fade">
-            <img src="images/metal.jpg" style="width: 100%; height: 500px; object-fit: contain"/>
-            
-          </div>
-        
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-        
-        </div>
-        <br>
-        
-       
-        
-        <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-        
-        function plusSlides(n) {
-          showSlides(slideIndex += n);
-        }
-        
-        function currentSlide(n) {
-          showSlides(slideIndex = n);
-        }
-        
-        function showSlides(n) {
-          let i;
-          let slides = document.getElementsByClassName("mySlides");
-          let dots = document.getElementsByClassName("dot");
-          if (n > slides.length) {slideIndex = 1}    
-          if (n < 1) {slideIndex = slides.length}
-          for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-          }
-          for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-          }
-          slides[slideIndex-1].style.display = "block";  
-          dots[slideIndex-1].className += " active";
-        }
-        </script>
-</main>
   
-  
+<h1 _ngcontent-serverapp-c213="" class="heading-lg color-heading">Photo Frames</h1>
+<div class="category-navigation">
+  <a href="">Anniversaries</a>
+  <a href="#">Baby</a>
+  <a href="#">Baby Showers</a>
+  <a href="#">Birthdays</a>
+  <a href="#">Calendars</a>
+  <a href="#">Cards and Stationery</a>
+  <a href="#">Christmas</a>
+  <a href="#">Engagement</a>
+  <a href="#">Events</a>
+  <a href="#">Family</a>
+  <a href="#">Father's Day</a>
+  <a href="#">Gifts</a>
+  <a href="#">Graduation</a>
+  <a href="#">Holiday</a>
+  <a href="#">Home Decor</a>
+  <a href="#">Kids</a>
+  <a href="#">Photo Books</a>
+  <a href="#">Photo Prints</a>
+  <a href="#">Photos</a>
+  <a href="#">Quotes</a>
+  <a href="#">Wall Art</a>
+  <a href="#">Wedding</a>
+  <a href="#">Wedding Invitations</a>
+</div>
 
+<div class="product-grid">
+  <div class="product-item">
+      <img src="images/photobook.jpg" alt="Photo Books">
+      <p>Photo Books</p>
+  </div>
+  <div class="product-item">
+      <img src="images/canvasprints.webp" alt="Canvas Prints">
+      <p>Canvas Prints</p>
+  </div>
+  <div class="product-item">
+      <img src="images/weddinginvitations.jpg" alt="Wedding Invitations">
+      <p>Wedding Invitations</p>
+  </div>
+  <div class="product-item">
+      <img src="images/photoblankets.jpg" alt="Photo Blankets">
+      <p>Photo Blankets</p>
+  </div>
+  <div class="product-item">
+      <img src="images/graduationcards.jpg" alt="Graduation Cards">
+      <p>Graduation Cards</p>
+  </div>
+  <div class="product-item">
+      <img src="images/photoprints.jpg" alt="Photo Prints">
+      <p>Photo Prints</p>
+  </div>
+  <div class="product-item">
+      <img src="images/savethedates.jpg" alt="Save The Dates">
+      <p>Save The Dates</p>
+  </div>
+  <div class="product-item">
+      <img src="images/photopuzzles.jpg" alt="Photo Puzzles">
+      <p>Photo Puzzles</p>
+  </div>
+  </div>
 
+<script>
+  // You can add JavaScript here for any dynamic behavior,
+  // such as filtering products based on category clicks.
 
-<section class="order-frame">
-    <h2>Order Your Custom Frame</h2>
-    <button onclick="openOrderForm()">Buy Now</button>
-    
-    <div id="orderForm" class="popup-form">
-        <h3>Place Your Order</h3>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="text" placeholder="Frame Size (e.g. 10x12 inches)" required>
-        <button onclick="submitOrder()">Submit</button>
-        <button onclick="closeOrderForm()">Close</button>
-    </div>
-</section>
+  const categoryLinks = document.querySelectorAll('.category-navigation a');
+  const productItems = document.querySelectorAll('.product-item');
 
+  categoryLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+          event.preventDefault();
+          const category = this.textContent.toLowerCase().replace(/ /g, '-');
+          console.log(`Filtering by: ${category}`);
+          // In a real application, you would use this category
+          // to fetch and display relevant products.
+          // For this static example, we can just highlight the clicked link.
 
+          // Remove active class from other links
+          categoryLinks.forEach(otherLink => {
+              otherLink.classList.remove('active');
+          });
+          // Add active class to the clicked link
+          this.classList.add('active');
 
+          // You would typically update the product grid here based on the selected category.
+          // For example, by hiding/showing product items or fetching new data.
+      });
+  });
 
+  // Basic highlighting of the first category on load
+  if (categoryLinks.length > 0) {
+      categoryLinks[0].classList.add('active');
+  }
+</script>
 
 
 <section class="categories">
@@ -97,49 +112,6 @@
 </section>
 
 
-<h1>Personalized Gifts</h1>
-<div class="container">
-    <div class="product">
-      <img src="images/cholocatebox.jfif" alt="Chocolate Box">
-      <p>Chocolate Boxes</p>
-  </div>
-  <div class="product">
-      <img src="images/mug.jfif" alt="Mug">
-      <p>Mugs</p>
-  </div>
-  <div class="product">
-      <img src="images/frame.webp" alt="Photo Frame">
-      <p>Photo Frames</p>
-  </div>
-</div>
-
-
-
-
-<h1>Photo Frames</h1>
-
-<div class="product">
-    <h3>Wooden Frame</h3>
-    <p>Price: $25</p>
-    <button onclick="addToCart('1', 'Wooden Frame', 25, 1)">Add to Cart</button>
-</div>
-
-<script>
-    function addToCart(productId, productName, price, quantity) {
-        fetch("http://localhost:3000/add-to-cart", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ productId, productName, price, quantity })
-        })
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error("Error:", error));
-    }
-</script>
-
-
 <section class="products">
   <h2>Products</h2>
 <div class="products">
@@ -148,37 +120,49 @@
           <img src="images/peach-frame.jpg" alt="Peach Color Decorative Photo Frame">
           <div class="product-title">Peach Color Decorative Photo Frame</div>
           <div class="product-price">₹250</div>
-          <a href="#" class="add-to-cart">Add to cart</a>
+          <button onclick="addToCart({ _id: '12345', name: 'Photo Frame', price: 599 })">
+            Add to Cart
+        </button>        
       </div>
       <div class="product-item">
           <img src="images/photo-frame-2.jpg" alt="Photo Frame for 2 Pics">
           <div class="product-title">Photo Frame for 2 Pics</div>
           <div class="product-price">₹200</div>
-          <a href="#" class="add-to-cart">Add to cart</a>
+          <button onclick="addToCart({ _id: '12345', name: 'Photo Frame', price: 599 })">
+            Add to Cart
+        </button>        
       </div>
       <div class="product-item">
           <img src="images/family-frame.jpg" alt="Photo Frame for Family">
           <div class="product-title">Photo Frame for Family</div>
           <div class="product-price">₹599</div>
-          <a href="#" class="add-to-cart">Add to cart</a>
+          <button onclick="addToCart({ _id: '12345', name: 'Photo Frame', price: 599 })">
+            Add to Cart
+        </button>        
       </div>
       <div class="product-item">
           <img src="images/happy-frame.jpg" alt="Happy 3 Pics Photo Frame">
           <div class="product-title">Happy 3 Pics Photo Frame</div>
           <div class="product-price">₹350</div>
-          <a href="#" class="add-to-cart">Add to cart</a>
+          <button onclick="addToCart({ _id: '12345', name: 'Photo Frame', price: 599 })">
+            Add to Cart
+        </button>        
       </div>
       <div class="product-item">
           <img src="images/clock-frame.webp" alt="Clock & 5 Pics Photo Frame">
           <div class="product-title">Clock & 5 Pics Photo Frame</div>
           <div class="product-price">₹1,200</div>
-          <a href="#" class="add-to-cart">Add to cart</a>
+          <button onclick="addToCart({ _id: '12345', name: 'Photo Frame', price: 599 })">
+            Add to Cart
+        </button>        
       </div>
       <div class="product-item">
           <img src="images/evergreen-frames.jpg" alt="Evergreen Memories Photo Frames">
           <div class="product-title">Evergreen Memories Photo Frames</div>
           <div class="product-price">₹2,400</div>
-          <a href="#" class="add-to-cart">Add to cart</a>
+          <button onclick="addToCart({ _id: '12345', name: 'Photo Frame', price: 599 })">
+            Add to Cart
+        </button>        
       </div>
   </div>
 </div>
@@ -191,25 +175,33 @@
                 <img src="images/service1.jpg" alt="Commercial Photography">
                 <h3>Commercial, Industrial & Advertising Photography</h3>
                 <p>We also click for many advertising agencies and help them in making good content for their ads.</p>
-                <button>Enquire Now</button>
+                <a href="/enquire-now?service=Commercial Photography">
+                  <button>Enquire Now</button>
+              </a>
             </div>
             <div class="service-card">
                 <img src="images/coordinated-family-portraits.jpg" alt="Matrimonial Photography">
                 <h3>Matrimonial & Family Photo Sessions</h3>
                 <p>Looking out for marriage options? Get clicked by us and find your mate with perfect matrimonial pictures.</p>
-                <button>Enquire Now</button>
+                <a href="/enquire-now?service=Matrimonial Photography">
+                  <button>Enquire Now</button>
+              </a>
             </div>
             <div class="service-card">
                 <img src="images/photocoping.jfif" alt="Photocopying">
                 <h3>Photocopying</h3>
                 <p>Whether you need a standard photocopying service, or a large document copied, our photocopiers will complete your job quickly and efficiently.</p>
-                <button>Enquire Now</button>
+                <a href="/enquire-now?service=Photocopying">
+                  <button>Enquire Now</button>
+              </a>
             </div>
             <div class="service-card">
                 <img src="images/priniting.jpg" alt="Printing">
                 <h3>Printing</h3>
                 <p>You won't miss a deadline with our printing services. We offer printing in black and white, and spot in either matt or gloss finish.</p>
-                <button>Enquire Now</button>
+                <a href="/enquire-now?service=Printing">
+                  <button>Enquire Now</button>
+              </a>
             </div>
         </div>
     </section>
@@ -224,6 +216,12 @@
   We, Perfect Prints, ensure that nothing from our creations ends up in a landfill
   and constantly innovate the way we do business so you can feel more care and less environmental impact. 
   Our frames will capture all your beautiful memories that you can keep in the corners and cherish them for years to come.
+  Looking for a little guidance on ordering picture frames online? We compiled the best tips and tricks to understanding custom picture frames, 
+  from choosing the most fitting types of frames for your home, exploring what makes each one unique, 
+  and sharing some of our favorite ways to display them. Discover frames in every style, shape, color, 
+  and size with our large online selection of custom picture frames. 
+  Whether you’re framing a photo, piece of art, canvas, or print, we offer easy personalized framing that’s gallery wall-worthy. 
+  Read on to discover our best online framing service that will take care of everything from printing to framing to adding the hanging hardware.
 </p>
 </div>
 <div class="about-image">

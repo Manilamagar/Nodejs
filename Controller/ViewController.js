@@ -3,6 +3,7 @@ const CategoryModel = require("../Model/CategoryModel");
 const blogsModel = require("../Model/BlogsModel");
 const categoryModel = require("../Model/CategoryModel");
 
+
 exports.HomePage = CatchAsync(async (req, res) => {
     const page = Number(req.query.page);
     const search_field = req.query.searchQuery;
@@ -41,6 +42,7 @@ exports.HomePage = CatchAsync(async (req, res) => {
         categories: category
     });
 });
+
 
 exports.HoverPage = CatchAsync(async (req, res) => {
     res.render("Pages/Home/Home.ejs");
@@ -90,6 +92,11 @@ exports.AddBlogsPage = CatchAsync(async (req, res) => {
         isActive: true
     });
 
+
+    exports.EnquirePage = (req, res) => {
+        res.send('View Page Loaded Successfully!');
+    };
+    
 
     res.render("Pages/Add_Blogs/Add_Blogs.ejs", {
         CategoryList

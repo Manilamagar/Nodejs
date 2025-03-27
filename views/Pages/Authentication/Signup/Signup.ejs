@@ -1,93 +1,101 @@
-
-<link rel="stylesheet" href="./css/Signup.css">
-
-
+<link rel="stylesheet" href="./css/singup.css">
 <div class="signup-container">
-    <!-- Header Section -->
-    <header>
-        <h1>Welcome to Letang Canvas and Innovation</h1>
-        <p>Sign up to explore our premium photo frames and elevate your memories.</p>
-    
-     <!-- Demo Form Section -->
-     <section class="demo-form">
-        <h2>Get a perivous memories</h2>
-        <form>
-            <div class="form-row">
-                <input type="text" placeholder="First Name" required>
-                <input type="text" placeholder="Last Name" required>
+    <div class="signup-form">
+        <h2>Sign up</h2>
+        <span class="close-btn">&times;</span>
+        <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <div class="phone-input">
+                <span class="country-code">+977</span>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
             </div>
-            <div class="form-row">
-                <input type="email" placeholder="Email Address" required>
-                
-            </div>
-            <div class="form-row">
-                <input type="tel" placeholder="Phone Number" required>
-                <select required>
-                    <option value="" disabled selected>Business Type...</option>
-                    <option value="individual">Individual</option>
-                    <option value="retailer">Retailer</option>
-                    <option value="wholesaler">Wholesaler</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Is this a New Opening or an Existing Establishment?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="establishment" value="existing" required> Existing Establishment</label>
-                    <label><input type="radio" name="establishment" value="new" required> New Opening</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>How many total concepts & locations do you have?</label>
-                <div class="button-group">
-                    <button type="button">1-2</button>
-                    <button type="button">3-5</button>
-                    <button type="button">6-20</button>
-                    <button type="button">20+</button>
-                </div>
-            </div>
-            <button type="submit" class="submit-button">Get a Free Demo</button>
-            <p>By completing and submitting the form above, you agree to our Privacy Policy and to allow SMS communications with the phone number provided. 
-                For detailed information on all promotion requirements, please refer to the Promotional Requirements page.</p>
-        </form>
-    </section>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="terms" name="terms">
+            <label for="terms">By creating and/or using your account, you agree to our <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</label>
+        </div>
+        <button type="button" class="whatsapp-btn">Send code via Whatsapp</button>
+        <button type="button" class="sms-btn">Send code via SMS</button>
+        <div class="separator">
+            <span>Or, sign up with</span>
+        </div>
+        <div class="social-login">
+            <a href="https://g.co/kgs/5UFFc5F" class="google-login">Google</a>
+            <a href="https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100" class="facebook-login">Facebook</a>
+        </div>
+        <div class="login-link">
+            Already have an account? <a href="#">Log in Now</a>
+        </div>
+    </div>
 </div>
-</header>
-
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Letang Canvas and Innovation. All rights reserved.</p>
-    </footer>
-</div>
-
-
-
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="script.js"></script>
 <script>
-    const SubmitButton = document.getElementById("Signup-button");
-    SubmitButton.addEventListener("click", async () => {
-        const username = document.getElementById("username").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const passwordConfirm = document.getElementById("passwordConfirm").value;
 
-        console.log(username, email, password, passwordConfirm);
-        const response = await axios({
-            method: "POST",
-            url: "http://localhost:8001/api/v1/auth/signup",
-            data: {
-                username,
-                email,
-                password,
-                passwordConfirm,
-            }
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
+    const smsBtn = document.querySelector('.sms-btn');
+    const phoneInput = document.getElementById('phone');
+    const termsCheckbox = document.getElementById('terms');
 
-        if (response.data.status == "success") {
-            alert("Login Successful");
+    whatsappBtn.addEventListener('click', () => {
+        const phone = phoneInput.value.trim();
+        if (phone && termsCheckbox.checked) {
+            // Send phone number to the backend for WhatsApp verification
+            sendVerificationCode('whatsapp', phone);
+        } else {
+            alert('Please enter your phone number and agree to the terms.');
         }
+    });
 
+    smsBtn.addEventListener('click', () => {
+        const phone = phoneInput.value.trim();
+        if (phone && termsCheckbox.checked) {
+            // Send phone number to the backend for SMS verification
+            sendVerificationCode('sms', phone);
+        } else {
+            alert('Please enter your phone number and agree to the terms.');
+        }
+    });
 
-    })
+    function sendVerificationCode(method, phone) {
+        fetch('/api/signup/send-code', { // Replace with your actual API endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ method, phone }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(`Verification code sent via ${method.toUpperCase()}.`);
+                // Optionally redirect to a verification code input page
+            } else {
+                alert(`Error sending verification code via ${method.toUpperCase()}: ${data.message}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error sending verification code:', error);
+            alert(`An error occurred while sending the verification code via ${method.toUpperCase()}.`);
+        });
+    }
 
+    // You would also add event listeners for Google and Facebook login buttons
+    const googleLoginBtn = document.querySelector('.google-login');
+    const facebookLoginBtn = document.querySelector('.facebook-login');
+
+    if (googleLoginBtn) {
+        googleLoginBtn.addEventListener('click', () => {
+            // Redirect to your Google OAuth endpoint
+            window.location.href = '/auth/google'; // Replace with your actual Google OAuth URL
+        });
+    }
+
+    if (facebookLoginBtn) {
+        facebookLoginBtn.addEventListener('click', () => {
+            // Redirect to your Facebook OAuth endpoint
+            window.location.href = '/auth/facebook'; // Replace with your actual Facebook OAuth URL
+        });
+    }
+});
 </script>

@@ -1,66 +1,222 @@
-    /* Container for overall layout */
-    .login-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50vh;
-        background: linear-gradient(135deg, #71b7e6, #9b59b6);
-    }
+/* Basic Reset and Body Styling (adjust as needed) */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4; /* Example background */
+    flex-direction: column;
+}
 
-    /* Login form container */
-    #user-account-login {
-        background: #ffffff;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        width: 320px;
-    }
+.login-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 400px; /* Adjust as needed */
+    margin-top: 50px;
+}
 
-    /* Form Heading */
-    #user-account-login h2 {
-        text-align: center;
-        margin-bottom: 1.5rem;
-        color: #333;
-    }
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
 
-    /* Form Group */
-    #user-account-login div {
-        margin-bottom: 1rem;
-    }
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    color: #aaa;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
 
-    /* Input Styles */
-    #user-account-login input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1rem;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
+.tab-buttons {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
 
-    #user-account-login input:focus {
-        border-color: #9b59b6;
-        box-shadow: 0 0 5px rgba(155, 89, 182, 0.5);
-        outline: none;
-    }
+.tab-button {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #777;
+}
 
-    /* Button Styles */
-    #Login-button {
-        width: 100%;
-        padding: 0.75rem;
-        background-color: #9b59b6;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.tab-button.active {
+    color: #333;
+    border-bottom: 2px solid #007bff; /* Example active tab indicator */
+}
 
-    #Login-button:hover {
-        background-color: #8e44ad;
-    }
+.tab-content {
+    /* Styles for the content of each tab */    
+        display: inline;
 
-    footer{
-        margin-top: 0;
-    }
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="tel"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group {
+    position: relative; /* For password toggle icon positioning */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #777;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.login-btn, .send-otp-btn, .verify-otp-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ff6a00; /* Example Daraz orange */
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover, .send-otp-btn:hover, .verify-otp-btn:hover {
+    background-color: #e05d00;
+}
+
+.signup-link {
+    text-align: center;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #777;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex-grow: 1;
+    background-color: #ccc;
+    height: 1px;
+    margin: 0 10px;
+}
+
+.social-login {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.social-login a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    text-align: center;
+    width: 45%; /* Adjust width as needed */
+}
+
+.social-login a:hover {
+    border-color: #007bff;
+}
+
+.google-login {
+    /* Add Google specific styling if needed */
+    color: #333;
+    background-color: #e05d00;
+    border-color: #e05d00;
+}
+
+.facebook-login {
+    background-color: #4267B2;
+    color: white;
+    border-color: #4267B2;
+}
+
+.facebook-login:hover {
+    background-color: #364e8f;
+}
+
+.otp-input-group {
+    margin-top: 15px;
+}
+
+.otp-input-group input[type="text"] {
+    width: calc(100% - 122px);
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.otp-input-group button {
+    width: auto;
+    display: inline-block;
+    padding: 10px 15px;
+}

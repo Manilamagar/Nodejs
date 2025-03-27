@@ -1,49 +1,199 @@
-<link rel="stylesheet" href="./css/Login.css">
 
-    <div class="container">
-        <!-- Upper Section -->
-        <div class="upper-section">
-            <h1>Welcome! to our Letang Canvas and Innovation</h1>
-            <p>Join our community and enjoy seamless access to exclusive features.</p>
-        </div>
-        </div>
+    <link rel="stylesheet" href="./css/login.css">
 
-        <!-- Middle Section -->
-        <div class="login-container">
-            <div id="user-account-login">
-                <h2>Login</h2>
-                <div>
-                    <input type="email" name="email" id="email" placeholder="Email">
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Log In</h2>
+            <span class="close-btn">&times;</span>
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="password">Password</button>
+                <button class="tab-button" data-tab="phone">Phone Number</button>
+            </div>
+            <div class="tab-content" id="password-tab">
+                <div class="input-group">
+                    <label for="email-phone">Please enter your Phone Number or Email</label>
+                    <input type="text" id="email-phone" name="email-phone">
                 </div>
-                <div>
-                    <input type="password" name="password" id="password" placeholder="Password">
+                <div class="input-group">
+                    <label for="password">Please enter your password</label>
+                    <input type="password" id="password" name="password">
+                    <span class="toggle-password" onclick="togglePasswordVisibility('password')">&#128065;</span>
                 </div>
-                <button id="Login-button">Login</button>
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button type="button" class="login-btn">LOG IN</button>
+            </div>
+            <div class="tab-content" id="phone-tab" style="display: none;">
+                <div class="input-group">
+                    <label for="phone-login">Please enter your Phone Number</label>
+                    <input type="tel" id="phone-login" name="phone-login">
+                </div>
+                <button type="button" class="send-otp-btn">SEND OTP</button>
+                <div class="otp-input-group" style="display: none;">
+                    <label for="otp">Enter OTP</label>
+                    <input type="text" id="otp" name="otp">
+                    <button type="button" class="verify-otp-btn">VERIFY OTP</button>
+                </div>
+            </div>
+            <div class="signup-link">
+                Don't have an account? <a href="/signup">Sign up</a>
+            </div>
+            <div class="separator">
+                <span>Or, log in with</span>
+            </div>
+            <div class="social-login">
+                <a href="https://g.co/kgs/5UFFc5F" class="google-login">Google</a>
+                <a href="https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100" class="facebook-login">Facebook</a>
             </div>
         </div>
-        
+    </div>
 
-  
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const sendOtpBtn = document.querySelector('.send-otp-btn');
+    const otpInputGroup = document.querySelector('.otp-input-group');
+    const verifyOtpBtn = document.querySelector('.verify-otp-btn');
+    const loginBtn = document.querySelector('.login-btn');
 
-    const Button = document.getElementById("Login-button");
-    Button.addEventListener("click", async () => {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
 
-        const response = await axios({
-            method: "POST",
-            url: "http://localhost:8001/api/v1/auth/login",
-            data: {
-                email,
-                password
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.style.display = 'none');
+
+            button.classList.add('active');
+            document.getElementById(tabId + '-tab').style.display = 'block';
+        });
+    });
+
+    if (sendOtpBtn) {
+        sendOtpBtn.addEventListener('click', () => {
+            const phone = document.getElementById('phone-login').value.trim();
+            if (phone) {
+                // Send phone number to the backend to send OTP
+                sendVerificationCode('sms', phone); // Assuming SMS for OTP
+                otpInputGroup.style.display = 'block';
+            } else {
+                alert('Please enter your phone number.');
+            }
+        });
+    }
+
+    if (verifyOtpBtn) {
+        verifyOtpBtn.addEventListener('click', () => {
+            const phone = document.getElementById('phone-login').value.trim();
+            const otp = document.getElementById('otp').value.trim();
+            if (phone && otp) {
+                // Send phone and OTP to the backend for verification and login
+                verifyOTP(phone, otp);
+            } else {
+                alert('Please enter your phone number and OTP.');
+            }
+        });
+    }
+
+    if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+            const emailPhone = document.getElementById('email-phone').value.trim();
+            const password = document.getElementById('password').value;
+            if (emailPhone && password) {
+                // Send email/phone and password to the backend for login
+                loginWithPassword(emailPhone, password);
+            } else {
+                alert('Please enter your email/phone and password.');
+            }
+        });
+    }
+
+    function sendVerificationCode(method, phone) {
+        fetch('/api/auth/send-otp', { // Replace with your actual API endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ method, phone }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(`OTP sent to ${phone} via SMS.`);
+            } else {
+                alert(`Error sending OTP: ${data.message}`);
             }
         })
+        .catch(error => {
+            console.error('Error sending OTP:', error);
+            alert('An error occurred while sending the OTP.');
+        });
+    }
 
-        if (response.data.status == "success") {
-            console.log("Logged in successfully");
+    function verifyOTP(phone, otp) {
+        fetch('/api/auth/verify-otp', { // Replace with your actual API endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ phone, otp }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Login successful!');
+                // Redirect the user to the dashboard or home page
+                window.location.href = '/dashboard'; // Replace with your desired URL
+            } else {
+                alert(`OTP verification failed: ${data.message}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error verifying OTP:', error);
+            alert('An error occurred while verifying the OTP.');
+        });
+    }
+
+    function loginWithPassword(emailPhone, password) {
+        fetch('/api/auth/login', { // Replace with your actual API endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ identifier: emailPhone, password }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Login successful!');
+                // Store the user token or session and redirect
+                window.location.href = '/dashboard'; // Replace with your desired URL
+            } else {
+                alert(`Login failed: ${data.message}`);
+            }
+        })
+        .catch(error => {
+            console.error('Login error:', error);
+            alert('An error occurred during login.');
+        });
+    }
+
+    window.togglePasswordVisibility = function(inputId) {
+        const passwordInput = document.getElementById(inputId);
+        const toggleIcon = passwordInput.nextElementSibling;
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.innerHTML = '&#128065;'; // Show eye
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.innerHTML = '&#128065;'; // Hide eye
         }
-    })
+    };
 
+    // You would also handle the redirection for Google and Facebook login
+    // These are typically handled by setting the `href` attribute of the links
+    // to your backend OAuth initiation routes (e.g., /auth/google).
+});
 </script>
